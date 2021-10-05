@@ -74,5 +74,9 @@ public class Tela_Login extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(59, 123, 265, 20);
 		contentPane.add(passwordField);
+		
+		JButton btnAguiar = new JButton("AGUIAR");
+		btnAguiar.setBounds(140, 21, 111, 23);
+		contentPane.add(btnAguiar);
 	}
 }
