@@ -15,11 +15,11 @@ import javax.swing.JPasswordField;
 public class Cadastro_Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JPasswordField passwordField;
+	private JTextField EdNome;
+	private JTextField EdCPF;
+	private JTextField EdCelular;
+	private JTextField EdEmail;
+	private JPasswordField EdSenha;
 
 	/**
 	 * Launch the application.
@@ -53,32 +53,32 @@ public class Cadastro_Login extends JFrame {
 		label.setBounds(12, 10, 62, 22);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(12, 32, 259, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		EdNome = new JTextField();
+		EdNome.setBounds(12, 32, 259, 20);
+		contentPane.add(EdNome);
+		EdNome.setColumns(10);
 		
 		Label label_1 = new Label("CPF");
 		label_1.setBounds(12, 55, 62, 22);
 		contentPane.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(12, 77, 126, 20);
-		contentPane.add(textField_1);
+		EdCPF = new JTextField();
+		EdCPF.setColumns(10);
+		EdCPF.setBounds(12, 77, 126, 20);
+		contentPane.add(EdCPF);
 		
 		Label label_1_1 = new Label("Celular");
 		label_1_1.setBounds(12, 98, 62, 22);
 		contentPane.add(label_1_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(12, 120, 126, 20);
-		contentPane.add(textField_2);
+		EdCelular = new JTextField();
+		EdCelular.setColumns(10);
+		EdCelular.setBounds(12, 120, 126, 20);
+		contentPane.add(EdCelular);
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.setBounds(91, 271, 103, 23);
-		contentPane.add(btnNewButton);
+		JButton BtnConfirmar = new JButton("Cadastrar");
+		BtnConfirmar.setBounds(91, 271, 103, 23);
+		contentPane.add(BtnConfirmar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setForeground(Color.RED);
@@ -89,17 +89,17 @@ public class Cadastro_Login extends JFrame {
 		label_1_1_1.setBounds(12, 140, 62, 22);
 		contentPane.add(label_1_1_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(12, 162, 259, 20);
-		contentPane.add(textField_3);
+		EdEmail = new JTextField();
+		EdEmail.setColumns(10);
+		EdEmail.setBounds(12, 162, 259, 20);
+		contentPane.add(EdEmail);
 		
 		Label label_1_1_1_1 = new Label("Senha");
 		label_1_1_1_1.setBounds(12, 182, 62, 22);
 		contentPane.add(label_1_1_1_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(12, 204, 164, 20);
-		contentPane.add(passwordField);
+		EdSenha = new JPasswordField();
+		EdSenha.setBounds(12, 204, 164, 20);
+		contentPane.add(EdSenha);
 	}
 }

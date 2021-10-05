@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import java.awt.Label;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Tela_Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField EdUsuario;
+	private JPasswordField EdSenha;
 
 	/**
 	 * Launch the application.
@@ -48,20 +50,32 @@ public class Tela_Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Nova conta");
-		btnNewButton.setIcon(null);
-		btnNewButton.setForeground(Color.RED);
-		btnNewButton.setBounds(259, 227, 119, 23);
-		contentPane.add(btnNewButton);
+		JButton BtnNovaConta = new JButton("Nova conta");
+		BtnNovaConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cadastro_Login frame = new Cadastro_Login();
+				 
+				frame.setVisible(true);
+			}
+		});
+		BtnNovaConta.setIcon(null);
+		BtnNovaConta.setForeground(Color.RED);
+		BtnNovaConta.setBounds(259, 227, 119, 23);
+		contentPane.add(BtnNovaConta);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnLogin.setBounds(140, 175, 111, 23);
 		contentPane.add(btnLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(59, 78, 265, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		EdUsuario = new JTextField();
+		EdUsuario.setBounds(59, 78, 265, 20);
+		contentPane.add(EdUsuario);
+		EdUsuario.setColumns(10);
 		
 		Label label = new Label("Usu\u00E1rio");
 		label.setBounds(59, 56, 62, 22);
@@ -71,9 +85,9 @@ public class Tela_Login extends JFrame {
 		label_1.setBounds(59, 100, 62, 22);
 		contentPane.add(label_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(59, 123, 265, 20);
-		contentPane.add(passwordField);
+		EdSenha = new JPasswordField();
+		EdSenha.setBounds(59, 123, 265, 20);
+		contentPane.add(EdSenha);
 		
 		JButton btnAguiar = new JButton("AGUIAR");
 		btnAguiar.setBounds(140, 21, 111, 23);
