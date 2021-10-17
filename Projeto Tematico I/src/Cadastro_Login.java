@@ -11,12 +11,13 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cadastro_Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField EdNome;
-	private JTextField EdCPF;
 	private JTextField EdCelular;
 	private JTextField EdEmail;
 	private JPasswordField EdSenha;
@@ -62,11 +63,6 @@ public class Cadastro_Login extends JFrame {
 		label_1.setBounds(12, 55, 62, 22);
 		contentPane.add(label_1);
 		
-		EdCPF = new JTextField();
-		EdCPF.setColumns(10);
-		EdCPF.setBounds(12, 77, 126, 20);
-		contentPane.add(EdCPF);
-		
 		Label label_1_1 = new Label("Celular");
 		label_1_1.setBounds(12, 98, 62, 22);
 		contentPane.add(label_1_1);
@@ -81,6 +77,11 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(BtnConfirmar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cadastro_Login.this.setVisible(false);
+			}
+		});
 		btnCancelar.setForeground(Color.RED);
 		btnCancelar.setBounds(200, 271, 89, 23);
 		contentPane.add(btnCancelar);
@@ -99,7 +100,12 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(label_1_1_1_1);
 		
 		EdSenha = new JPasswordField();
-		EdSenha.setBounds(12, 204, 164, 20);
+		EdSenha.setBounds(12, 204, 126, 20);
 		contentPane.add(EdSenha);
+		
+		JFormattedTextField EdCPF = new JFormattedTextField();
+		EdCPF.setBounds(12, 77, 124, 20);
+		contentPane.add(EdCPF);
+	
 	}
 }

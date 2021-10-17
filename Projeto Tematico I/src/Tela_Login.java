@@ -4,17 +4,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextPane;
+import java.awt.Label;
 import java.awt.TextField;
-import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
-import java.awt.Label;
+import javax.swing.JButton;
+import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+
 
 public class Tela_Login extends JFrame {
 
@@ -44,7 +45,7 @@ public class Tela_Login extends JFrame {
 	public Tela_Login() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 404, 300);
+		setBounds(100, 100, 408, 306);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +67,6 @@ public class Tela_Login extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 		btnLogin.setBounds(140, 175, 111, 23);
@@ -89,7 +89,11 @@ public class Tela_Login extends JFrame {
 		EdSenha.setBounds(59, 123, 265, 20);
 		contentPane.add(EdSenha);
 		
-		JButton btnAguiar = new JButton("AGUIAR");
+		JButton btnAguiar = new JButton("TESTE");
+		btnAguiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAguiar.setBounds(140, 21, 111, 23);
 		contentPane.add(btnAguiar);
 	}
