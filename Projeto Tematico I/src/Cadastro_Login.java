@@ -13,6 +13,11 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class Cadastro_Login extends JFrame {
 
@@ -104,6 +109,19 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(EdSenha);
 		
 		JFormattedTextField EdCPF = new JFormattedTextField();
+		EdCPF.addInputMethodListener(new InputMethodListener() {
+			public void caretPositionChanged(InputMethodEvent event) {
+			}
+			public void inputMethodTextChanged(InputMethodEvent event) {
+			}
+		});
+		EdCPF.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				
+			}
+		});
+		EdCPF.setHorizontalAlignment(SwingConstants.TRAILING);
+		EdCPF.setToolTipText("");
 		EdCPF.setBounds(12, 77, 124, 20);
 		contentPane.add(EdCPF);
 	
