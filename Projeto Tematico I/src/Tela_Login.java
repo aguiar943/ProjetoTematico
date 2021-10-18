@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class Tela_Login extends JFrame {
@@ -65,8 +67,23 @@ public class Tela_Login extends JFrame {
 		contentPane.add(BtnNovaConta);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					Connection con = ConectaPostgres.criarConexao();
+				} catch (ClassNotFoundException E) {
+					// TODO Auto-generated catch block
+					E.printStackTrace();
+				} catch (SQLException E) {
+					// TODO Auto-generated catch block
+					E.printStackTrace();
+				}
+
 			}
 		});
 		btnLogin.setBounds(140, 175, 111, 23);
