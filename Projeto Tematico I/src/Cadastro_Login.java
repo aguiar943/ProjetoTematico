@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 
@@ -124,6 +126,26 @@ public class Cadastro_Login extends JFrame {
 		EdCPF.setToolTipText("");
 		EdCPF.setBounds(12, 77, 124, 20);
 		contentPane.add(EdCPF);
+		
+		JButton btnAguiar = new JButton("TESTE");
+		btnAguiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					Connection con = ConectaPostgres.criarConexao();
+					
+				} catch (ClassNotFoundException E) {
+					// TODO Auto-generated catch block
+					E.printStackTrace();
+				} catch (SQLException E) {
+					// TODO Auto-generated catch block
+					E.printStackTrace();
+				}
+				
+			}
+		});
+		btnAguiar.setBounds(136, 237, 111, 23);
+		contentPane.add(btnAguiar);
 	
 	}
 }
