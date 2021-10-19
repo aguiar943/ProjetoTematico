@@ -6,16 +6,18 @@ public class ContaCorrente {
 	private String agencia;
 	private Cliente titular;
 	private Double saldo;
+	private String usuario;
+	private String senha;
 
 	public ContaCorrente(Cliente titular) {
 		this.titular = titular;
 		this.saldo = 0.0;
 	}
 
-	public ContaCorrente(Cliente titular, String agencia, Integer numero) {
+	public ContaCorrente(Cliente titular, String usuario, String senha) {
 		this.titular = titular;
-		this.agencia = agencia;
-		this.numero = numero;
+		this.usuario = usuario;
+		this.senha = senha;
 		this.saldo = 0.0;
 	}
 
@@ -45,6 +47,22 @@ public class ContaCorrente {
 
 	public Double getSaldo() {
 		return saldo;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public void depositar(Double value) {

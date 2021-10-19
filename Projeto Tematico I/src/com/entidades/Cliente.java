@@ -4,8 +4,6 @@ public class Cliente {
 
 	private String nome;
 	private String sobrenome;
-	private String usuario;
-	private String senha;
 	private String cpf;
 
 	public Cliente(String nome, String cpf) {
@@ -29,14 +27,6 @@ public class Cliente {
 		this.sobrenome = sobrenome;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
@@ -45,12 +35,5 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
 
 }
