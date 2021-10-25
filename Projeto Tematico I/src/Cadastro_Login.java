@@ -58,6 +58,7 @@ public class Cadastro_Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("Nome");
+		label.setEnabled(false);
 		label.setBounds(12, 10, 62, 22);
 		contentPane.add(label);
 		
@@ -67,10 +68,12 @@ public class Cadastro_Login extends JFrame {
 		EdNome.setColumns(10);
 		
 		Label label_1 = new Label("CPF");
+		label_1.setEnabled(false);
 		label_1.setBounds(12, 55, 62, 22);
 		contentPane.add(label_1);
 		
 		Label label_1_1 = new Label("Celular");
+		label_1_1.setEnabled(false);
 		label_1_1.setBounds(12, 98, 62, 22);
 		contentPane.add(label_1_1);
 		
@@ -80,6 +83,10 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(EdCelular);
 		
 		JButton BtnConfirmar = new JButton("Cadastrar");
+		BtnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		BtnConfirmar.setBounds(91, 271, 103, 23);
 		contentPane.add(BtnConfirmar);
 		
@@ -94,6 +101,7 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(btnCancelar);
 		
 		Label label_1_1_1 = new Label("E-mail");
+		label_1_1_1.setEnabled(false);
 		label_1_1_1.setBounds(12, 140, 62, 22);
 		contentPane.add(label_1_1_1);
 		
@@ -103,6 +111,7 @@ public class Cadastro_Login extends JFrame {
 		contentPane.add(EdEmail);
 		
 		Label label_1_1_1_1 = new Label("Senha");
+		label_1_1_1_1.setEnabled(false);
 		label_1_1_1_1.setBounds(12, 182, 62, 22);
 		contentPane.add(label_1_1_1_1);
 		
@@ -126,26 +135,6 @@ public class Cadastro_Login extends JFrame {
 		EdCPF.setToolTipText("");
 		EdCPF.setBounds(12, 77, 124, 20);
 		contentPane.add(EdCPF);
-		
-		JButton btnAguiar = new JButton("TESTE");
-		btnAguiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					Connection con = ConectaPostgres.criarConexao();
-					
-				} catch (ClassNotFoundException E) {
-					// TODO Auto-generated catch block
-					E.printStackTrace();
-				} catch (SQLException E) {
-					// TODO Auto-generated catch block
-					E.printStackTrace();
-				}
-				
-			}
-		});
-		btnAguiar.setBounds(136, 237, 111, 23);
-		contentPane.add(btnAguiar);
 	
 	}
 }

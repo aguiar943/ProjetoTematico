@@ -24,6 +24,8 @@ public class Tela_Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField EdUsuario;
 	private JPasswordField EdSenha;
+	private JTextField EdAgencia;
+	private JTextField EdConta;
 
 	/**
 	 * Launch the application.
@@ -47,7 +49,7 @@ public class Tela_Login extends JFrame {
 	public Tela_Login() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 408, 306);
+		setBounds(100, 100, 342, 238);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,7 +65,7 @@ public class Tela_Login extends JFrame {
 		});
 		BtnNovaConta.setIcon(null);
 		BtnNovaConta.setForeground(Color.RED);
-		BtnNovaConta.setBounds(259, 227, 119, 23);
+		BtnNovaConta.setBounds(182, 160, 119, 23);
 		contentPane.add(BtnNovaConta);
 		
 		JButton btnLogin = new JButton("Login");
@@ -86,32 +88,46 @@ public class Tela_Login extends JFrame {
 
 			}
 		});
-		btnLogin.setBounds(140, 175, 111, 23);
+		btnLogin.setBounds(40, 160, 111, 23);
 		contentPane.add(btnLogin);
 		
 		EdUsuario = new JTextField();
-		EdUsuario.setBounds(59, 78, 265, 20);
+		EdUsuario.setBounds(59, 32, 206, 20);
 		contentPane.add(EdUsuario);
 		EdUsuario.setColumns(10);
 		
-		Label label = new Label("Usu\u00E1rio");
-		label.setBounds(59, 56, 62, 22);
+		Label label = new Label("CPF");
+		label.setEnabled(false);
+		label.setBounds(59, 10, 62, 22);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("Senha");
-		label_1.setBounds(59, 100, 62, 22);
+		label_1.setEnabled(false);
+		label_1.setBounds(59, 54, 62, 22);
 		contentPane.add(label_1);
 		
 		EdSenha = new JPasswordField();
-		EdSenha.setBounds(59, 123, 265, 20);
+		EdSenha.setBounds(59, 77, 206, 20);
 		contentPane.add(EdSenha);
 		
-		JButton btnAguiar = new JButton("TESTE");
-		btnAguiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAguiar.setBounds(140, 21, 111, 23);
-		contentPane.add(btnAguiar);
+		Label label_1_1 = new Label("Ag\u00EAncia");
+		label_1_1.setEnabled(false);
+		label_1_1.setBounds(59, 103, 62, 22);
+		contentPane.add(label_1_1);
+		
+		Label label_1_1_1 = new Label("Conta");
+		label_1_1_1.setEnabled(false);
+		label_1_1_1.setBounds(160, 103, 62, 22);
+		contentPane.add(label_1_1_1);
+		
+		EdAgencia = new JTextField();
+		EdAgencia.setColumns(10);
+		EdAgencia.setBounds(59, 129, 86, 20);
+		contentPane.add(EdAgencia);
+		
+		EdConta = new JTextField();
+		EdConta.setColumns(10);
+		EdConta.setBounds(160, 129, 105, 20);
+		contentPane.add(EdConta);
 	}
 }
