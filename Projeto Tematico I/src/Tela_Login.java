@@ -75,17 +75,6 @@ public class Tela_Login extends JFrame {
 		});
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					Connection con = ConectaPostgres.criarConexao();
-				} catch (ClassNotFoundException E) {
-					// TODO Auto-generated catch block
-					E.printStackTrace();
-				} catch (SQLException E) {
-					// TODO Auto-generated catch block
-					E.printStackTrace();
-				}
-
 			}
 		});
 		btnLogin.setBounds(40, 160, 111, 23);
