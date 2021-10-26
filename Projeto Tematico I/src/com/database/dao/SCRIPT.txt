@@ -1,41 +1,45 @@
-/* -----------------CRIAÇÃO TABELA DE CONTA------------------------------------------------*/
-CREATE TABLE BA_CONTA
-( CA_ID INTEGER NOT NULL,
-  CA_USUARIO VARCHAR(50),
-  CA_CPF VARCHAR(14) NOT NULL,
-  CA_CELULAR VARCHAR(11),
-  CA_EMAIL VARCHAR(50),
-  CA_SENHA VARCHAR(20),
-  CA_AGENCIA INTEGER,
-  CA_CONTA INTEGER,
-  CA_DATAABERTURA DATE,
-  CA_SALDO FLOAT,
-  CONSTRAINT PK_CONTA PRIMARY KEY (CA_ID));
-  CONSTRAINT fk_conta_cliente FOREIGN KEY (cod_cliente) REFERENCES clientes(cod_cliente)
-
-
 /* -----------------CRIAÇÃO TABELA DE ENDEREÇOS------------------------------------------------*/
-
 CREATE TABLE BA_ENDERECOS (
-	EN_COD_ENDERECO SERIAL,
-	EN_RUA varchar(255),
-	EN_BAIRRO varchar(255),
-	EN_CIDADE varchar(255),
-	EN_COMPLEMENTO varchar(255),
-	EN_CEP varchar(9),
-	EN_NUMERO int,
-	CONSTRAINT pk_ENDERECOS PRIMARY KEY (EN_COD_ENDERECO)
-);
+  EN_COD_ENDERECO SERIAL,
+  EN_RUA varchar(255),
+  EN_BAIRRO varchar(255),
+  EN_CIDADE varchar(255),
+  EN_COMPLEMENTO varchar(255),
+  EN_CEP varchar(9),
+  EN_NUMERO int,
+  CONSTRAINT pk_ENDERECOS PRIMARY KEY (EN_COD_ENDERECO));
 
 /* -----------------CRIAÇÃO TABELA DE CLIENTES------------------------------------------------*/
 CREATE TABLE BA_CLIENTES
-( CL_ID INTEGER NOT NULL,
+( CL_ID SERIAL,
   CL_NOME VARCHAR(100),
   CL_SOBRENOME VARCHAR(100),
   CL_CPF VARCHAR(14) UNIQUE,
-  CL_EMAIL VARCHAR(100) UNIQUE,
   CL_TELEFONE VARCHAR(11) UNIQUE,
+  CL_EMAIL VARCHAR(50),
   CL_COD_ENDERECO INT,
-  CONSTRAINT PK_CLIENTES PRIMARY KEY (CL_ID));
-  -- CONSTRAINT fk_endereco_cliente FOREIGN KEY (EN_COD_ENDERECO) REFERENCES BA_ENDERECOS(EN_COD_ENDERECO));
-  /* -----------------------------------------------------------------*/
+  CONSTRAINT PK_CLIENTES PRIMARY KEY (CL_ID),
+  CONSTRAINT fk_endereco_cliente FOREIGN KEY (CL_COD_ENDERECO) REFERENCES BA_ENDERECOS(EN_COD_ENDERECO));
+
+/* -----------------CRIAÇÃO TABELA DE CONTA------------------------------------------------*/
+CREATE TABLE BA_CONTAS
+( CO_ID SERIAL,
+  CO_AGENCIA VARCHAR(255),
+  CO_NUM_CONTA INTEGER,
+  CO_SALDO FLOAT,
+  CO_USUARIO VARCHAR(50),
+  CO_SENHA VARCHAR(20),
+  CO_DATA_ABERTURA DATE,
+  CO_ID_CLIENTE INTEGER,
+  CONSTRAINT PK_CONTA PRIMARY KEY (CO_ID),
+  CONSTRAINT fk_conta_cliente FOREIGN KEY (CO_ID_CLIENTE) REFERENCES BA_CLIENTES(CL_ID));
+/* -----------------------------------------------------------------*/
+
+insert into ba_enderecos(en_rua, en_bairro, en_cidade, en_complemento, en_cep, en_numero)
+values('placido de castro', 'centro', 'caxias do sul', null, '12345-678', 1234);
+
+insert into ba_clientes (cl_nome, cl_sobrenome, cl_cpf, cl_telefone, cl_email, cl_cod_endereco)
+values ('john', 'smith', '123.123.123-12','54912341234','john.smith@gmail.com', 1);
+  
+insert into ba_contas(co_agencia, co_num_conta, co_saldo, co_usuario, co_senha, co_data_abertura, CO_ID_CLIENTE)
+values ('Ag1234', 1234, 0.0, 'user', 'pass', '2017-03-31 9:30:20', 1);
