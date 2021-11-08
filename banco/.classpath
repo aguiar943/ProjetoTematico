@@ -6,8 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="external/jgoodies-common-1.8.1.jar"/>
-	<classpathentry kind="lib" path="external/jgoodies-forms-1.8.0.jar"/>
-	<classpathentry kind="lib" path="external/postgresql-42.2.24.jar"/>
+	<classpathentry kind="lib" path="D:/UCS/Projetos/ProjetoTematico/banco/jgoodies-common-1.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/UCS/Projetos/ProjetoTematico/banco/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="D:/UCS/Projetos/ProjetoTematico/banco/postgresql-9.4.1208.jre6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -36,7 +36,7 @@ public abstract class TelaLoginLay extends JFrame {
 
 	public TelaLoginLay() {
 		this.setTitle("Login");
-		this.setSize(350, 200);
+		this.setSize(410, 210);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new CardLayout());

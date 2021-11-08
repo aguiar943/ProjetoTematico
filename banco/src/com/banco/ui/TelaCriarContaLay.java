@@ -48,7 +48,7 @@ public abstract class TelaCriarContaLay extends JFrame {
 
 	public TelaCriarContaLay() {
 		this.setTitle("Cadastro");
-		this.setSize(470, 375);
+		this.setSize(470, 380);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new CardLayout());
