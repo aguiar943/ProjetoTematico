@@ -12,17 +12,12 @@ public class ContaCorrente {
 	private String senha;
 	private String dataAbertura;
 
-	public ContaCorrente(Cliente titular) {
-		this.titular = titular;
-		this.saldo = 0.0;
-	}
-
 	public ContaCorrente(Integer numero, Cliente titular, String usuario, String senha) {
 		this.numero = numero;
 		this.titular = titular;
 		this.usuario = usuario;
 		this.senha = senha;
-		this.saldo = 0.0;
+		this.saldo = 1000.0;
 		this.agencia = "Ag0000";
 		this.dataAbertura = Calendar.YEAR + "-" + Calendar.MONTH + "-" + Calendar.DAY_OF_WEEK_IN_MONTH;
 	}

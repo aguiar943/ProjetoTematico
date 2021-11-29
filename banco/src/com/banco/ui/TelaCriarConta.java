@@ -2,12 +2,11 @@ package com.banco.ui;
 
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
-import com.banco.database.bo.ClienteBO;
-import com.banco.database.bo.ContaCorrenteBO;
+import com.banco.database.bo.impl.ClienteBoImpl;
+import com.banco.database.bo.impl.ContaCorrenteBoImpl;
 import com.banco.entidades.Cliente;
 import com.banco.entidades.ContaCorrente;
+import com.banco.util.Utils;
 
 public class TelaCriarConta extends TelaCriarContaLay {
 
@@ -17,41 +16,45 @@ public class TelaCriarConta extends TelaCriarContaLay {
 	protected void cadastrar() {
 		// verificar se todos os campos estão preenchidos
 		if (possuiCampoEmBranco()) {
-			showWarningDialog("Todos os campos devem ser preenchidos!");
+			Utils.showWarningDialog(this, "Todos os campos devem ser preenchidos!");
 			return;
 		}
 
 		// verificar se o nome de usuário já está em uso
 		if (usuarioExiste(txtUsuario.getText())) {
-			showErrorDialog("Este nome de usuário já está em uso!");
+			Utils.showErrorDialog(this, "Este nome de usuário já está em uso!");
 			return;
 		}
 
 		// verificar se cpf já está cadastrado
 		if (cpfCadastrado(txtCpf.getText())) {
-			showErrorDialog("Já existe uma conta com esse CPF!");
+			Utils.showErrorDialog(this, "Já existe uma conta com esse CPF!");
 			return;
 		}
 
 		// veriricar se o email já está cadastrado
 		if (emailCadastrado(txtEmail.getText())) {
-			showErrorDialog("Email já cadastrado!");
+			Utils.showErrorDialog(this, "Email já cadastrado!");
 			return;
 		}
 
 		// verificar se o número de telefone já está cadastrado
 		if (telefoneCadastrado(txtTelefone.getText())) {
-			showErrorDialog("Telefone já cadastrado!");
+			Utils.showErrorDialog(this, "Telefone já cadastrado!");
 			return;
 		}
 		// verificação se o campo 'senha' e 'confirma senha' são iguais
 		if (!String.valueOf(txtSenha.getPassword()).equals(String.valueOf(txtConfirmaSenha.getPassword()))) {
-			showErrorDialog("Senhas não coincidem");
+			Utils.showErrorDialog(this, "Senhas não coincidem");
 			return;
+		}
+		
+		if (Utils.removerCaracteresTelefone(txtTelefone.getText()).length() > 11) {
+			Utils.showWarningDialog(this, "Certifique-se de colocar apenas o DDD e o número de telefone");
 		}
 
 		gerarCadastro();
-		showInfoDialog("Cadastro realizado com sucesso!");
+		Utils.showInfoDialog(this, "Cadastro realizado com sucesso!");
 		exibirTelaLogin();
 	}
 
@@ -70,12 +73,12 @@ public class TelaCriarConta extends TelaCriarContaLay {
 	}
 
 	private boolean usuarioExiste(String usuario) {
-		ContaCorrenteBO contaCorrenteBo = new ContaCorrenteBO();
+		ContaCorrenteBoImpl contaCorrenteBo = new ContaCorrenteBoImpl();
 		ContaCorrente conta = null;
 		try {
 			conta = contaCorrenteBo.buscarContaPorUsuario(usuario);
 		} catch (SQLException e) {
-			showErrorDialog("Ocorreu um erro ao verificar cadastramento do usuário");
+			Utils.showErrorDialog(this, "Ocorreu um erro ao verificar cadastramento do usuário");
 			e.printStackTrace();
 			return false;
 		}
@@ -100,20 +103,31 @@ public class TelaCriarConta extends TelaCriarContaLay {
 		String senha = String.copyValueOf(txtSenha.getPassword());
 		ContaCorrente novaConta = new ContaCorrente(numero, novoCliente, usuario, senha);
 
-		ClienteBO clienteBO = new ClienteBO();
+		ClienteBoImpl clienteBO = new ClienteBoImpl();
+		
+		Integer idCliente = null;
+		try {
+			idCliente = clienteBO.getNextId();
+		} catch (SQLException e) {
+			Utils.showErrorDialog(this, "Houve um erro ao gerar o cadastro");
+			e.printStackTrace();
+		}
+		
+		novoCliente.setId(idCliente);
 		clienteBO.cadastrarCliente(novoCliente);
 
-		ContaCorrenteBO contaCorrenteBO = new ContaCorrenteBO();
+		novaConta.setTitular(novoCliente);
+		ContaCorrenteBoImpl contaCorrenteBO = new ContaCorrenteBoImpl();
 		contaCorrenteBO.cadastrarConta(novaConta);
 	}
 
 	private boolean cpfCadastrado(String cpf) {
-		ClienteBO clienteBo = new ClienteBO();
+		ClienteBoImpl clienteBo = new ClienteBoImpl();
 		Cliente cliente = null;
 		try {
 			cliente = clienteBo.buscarPorCpf(cpf);
 		} catch (SQLException e) {
-			showErrorDialog("Ocorreu um erro ao consultar cpf");
+			Utils.showErrorDialog(this, "Ocorreu um erro ao consultar cpf");
 			e.printStackTrace();
 			return false;
 		}
@@ -126,12 +140,12 @@ public class TelaCriarConta extends TelaCriarContaLay {
 	}
 
 	private boolean emailCadastrado(String email) {
-		ClienteBO clienteBo = new ClienteBO();
+		ClienteBoImpl clienteBo = new ClienteBoImpl();
 		Cliente cliente = null;
 		try {
 			cliente = clienteBo.buscarPorEmail(email);
 		} catch (SQLException e) {
-			showErrorDialog("Ocorreu um erro ao consultar email");
+			Utils.showErrorDialog(this, "Ocorreu um erro ao consultar email");
 			e.printStackTrace();
 		}
 
@@ -143,12 +157,12 @@ public class TelaCriarConta extends TelaCriarContaLay {
 	}
 
 	private boolean telefoneCadastrado(String telefone) {
-		ClienteBO clienteBo = new ClienteBO();
+		ClienteBoImpl clienteBo = new ClienteBoImpl();
 		Cliente cliente = null;
 		try {
 			cliente = clienteBo.buscarPorTelefone(telefone);
 		} catch (SQLException e) {
-			showErrorDialog("Ocorreu um erro ao consultar telefone");
+			Utils.showErrorDialog(this, "Ocorreu um erro ao consultar telefone");
 			e.printStackTrace();
 		}
 
@@ -162,7 +176,7 @@ public class TelaCriarConta extends TelaCriarContaLay {
 	private Integer gerarNumeroConta() {
 		int max = 9999;
 		int min = 1000;
-		ContaCorrenteBO bo = new ContaCorrenteBO();
+		ContaCorrenteBoImpl bo = new ContaCorrenteBoImpl();
 		Integer numero = (int) Math.floor(Math.random() * (max - min + 1) + min);
 		while (true) {
 			try {
@@ -170,24 +184,12 @@ public class TelaCriarConta extends TelaCriarContaLay {
 					break;
 				}
 			} catch (SQLException e) {
-				showErrorDialog("Ocorreu um erro ao buscar consultar disponibilidade do número da conta.");
+				Utils.showErrorDialog(this, "Ocorreu um erro ao buscar consultar disponibilidade do número da conta.");
 				e.printStackTrace();
 			}
 			numero = (int) Math.floor(Math.random() * (max - min + 1) + min);
 		}
 		return numero;
-	}
-
-	private void showErrorDialog(String message) {
-		JOptionPane.showMessageDialog(this, message, "ERRO", JOptionPane.ERROR_MESSAGE);
-	}
-
-	private void showWarningDialog(String message) {
-		JOptionPane.showMessageDialog(this, message, "AVISO", JOptionPane.WARNING_MESSAGE);
-	}
-
-	private void showInfoDialog(String message) {
-		JOptionPane.showMessageDialog(this, message, "AVISO", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

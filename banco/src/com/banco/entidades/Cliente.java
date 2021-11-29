@@ -78,4 +78,12 @@ public class Cliente {
 	public Integer getId() {
 		return this.id;
 	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getNomeCompleto() {
+		return this.nome + " " + this.sobrenome;
+	}
 }

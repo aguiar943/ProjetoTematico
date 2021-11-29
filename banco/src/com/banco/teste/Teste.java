@@ -1,9 +1,16 @@
 package com.banco.teste;
 
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
+import java.awt.Dimension;
 
-import com.banco.ui.TelaLogin;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.UIManager;
+
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 
 public class Teste {
 
@@ -16,13 +23,11 @@ public class Teste {
 
 		changeLookAndFeel(GTK);
 
-		TelaLogin tela = new TelaLogin();
-		tela.setVisible(true);
-
-		UIManager.LookAndFeelInfo[] lafInfo = UIManager.getInstalledLookAndFeels();
-		for (LookAndFeelInfo info : lafInfo) {
-			System.out.println(info);
-		}
+//		TelaLogin tela = new TelaLogin();
+//		TelaTransferencia tela = new TelaTransferencia();
+//		tela.setVisible(true);
+		
+		exibirPainelConfirmacao();
 	}
 
 	private static void changeLookAndFeel(String lookAndFeel) {
@@ -32,4 +37,30 @@ public class Teste {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void exibirPainelConfirmacao() {
+		JPanel pnl = new JPanel();
+		Dimension size = new Dimension(300,150);
+		pnl.setSize(size);
+		String col = "10px, pref:grow, 10px, pref:grow, 10px";
+		String row = "10px, 45px, 10px, 45px, 10px";
+		
+		pnl.setLayout(new FormLayout(col,row));
+		
+		JButton btnCancelarSenha = new JButton("Cancelar");
+		JButton btnConfirmarSenha = new JButton("Confirmar");
+		JPasswordField txtSenha = new JPasswordField();
+		
+		CellConstraints cc = new CellConstraints();
+		pnl.add(txtSenha, cc.xyw(2, 2, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
+		pnl.add(btnConfirmarSenha, cc.xy(2, 4, CellConstraints.DEFAULT, CellConstraints.FILL));
+		pnl.add(btnCancelarSenha, cc.xy(4, 4, CellConstraints.DEFAULT, CellConstraints.FILL));
+		
+		JOptionPane jop = new JOptionPane();
+		JDialog dialog = jop.createDialog("Confirme sua senha");
+		dialog.setSize(size);
+		dialog.setContentPane(pnl);
+		dialog.setVisible(true);
+	}
+
 }

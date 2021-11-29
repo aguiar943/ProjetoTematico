@@ -91,7 +91,7 @@ public class DbConnection {
 		return null;
 	}
 
-	public void insert(String query) {
+	public void saveOrUpdate(String query) {
 		try {
 			this.statement.executeUpdate(query);
 		} catch (SQLException e) {

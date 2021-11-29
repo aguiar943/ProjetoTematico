@@ -27,22 +27,24 @@ public abstract class TelaLoginLay extends JFrame {
 	protected JTextField txtUsuario;
 	protected JPasswordField txtSenha;
 
-	protected String PNL_ATUAL;
-	protected final String PNL_INICIAL = "PNL_INICIAL";
+	protected String pnlAtual;
+	protected static final String PNL_INICIAL = "PNL_INICIAL";
 
-	protected abstract void login();
+	protected abstract boolean login();
 
 	protected abstract void exibirTelaCadastro();
 
-	public TelaLoginLay() {
+	protected abstract void exibirTelaPrincipal();
+
+	protected TelaLoginLay() {
 		this.setTitle("Login");
-		this.setSize(410, 210);
+		this.setSize(350, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new CardLayout());
+		this.setResizable(false);
 
 		this.getContentPane().add(PNL_INICIAL, getPnlInicial());
-
 		addEvents();
 	}
 
@@ -78,7 +80,9 @@ public abstract class TelaLoginLay extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				login();
+				if (login()) {
+					exibirTelaPrincipal();
+				}
 			}
 		});
 
